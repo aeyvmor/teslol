@@ -93,11 +93,11 @@ Used to catch runtime errors (like division by zero). Use `try`, `throw`, and `c
 
 ```cpp
 try {
-    if (b == 0) throw runtime_error("Cannot divide by zero!");
+    if (b == 0) throw "Cannot divide by zero!";
     cout << a / b;
 } 
-catch (exception& e) {
-    cout << "Error: " << e.what();
+catch (const char* e) {
+    cout << "Error: " << e;
 }
 ```
 
@@ -110,7 +110,6 @@ This example computes Miles Per Gallon (MPG) while demonstrating dynamic arrays,
 
 ```cpp
 #include <iostream>
-#include <stdexcept>
 using namespace std;
 
 int main() {
@@ -137,7 +136,7 @@ int main() {
 
         for (int i = 0; i < size; i++) {
             if (*(gallons + i) == 0)
-                throw runtime_error("Division by zero!");
+                throw "Division by zero!";
             *(mpg + i) = *(miles + i) / *(gallons + i);
         }
 
@@ -146,8 +145,8 @@ int main() {
             cout << "Trip " << i + 1 << ": " << *(mpg + i) << " MPG\n";
         }
     } 
-    catch (exception& e) {
-        cout << "\nError: " << e.what() << endl;
+    catch (const char* e) {
+        cout << "\nError: " << e << endl;
     }
 
     delete[] miles;
